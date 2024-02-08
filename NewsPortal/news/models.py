@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.db.models import Sum
 from datetime import datetime
 
 
@@ -8,11 +9,20 @@ class Author(models.Model):
     user_rating = models.IntegerField(default=0)
 
     def update_rating(self):
-        post_rating = sum(Post.objects.filter(author=self).values_list('rating')) * 3
-        our_comment_rating = sum(Comment.objects.filter(author_of_comment=self).values_list('rating'))
-        all_posts = Post.objects.filter(author=self)
-        all_comment_rating = sum(Comment.objects.filter(post__in=all_posts).values_list('rating'))
-        self.user_rating = post_rating + our_comment_rating + all_comment_rating
+        sum_rating = self.post_set.aggregate(post_rating=Sum('rating'))
+        result_sum_rating = 0
+        try:
+            result_sum_rating += sum_rating.get('rating')
+        except TypeError:
+            result_sum_rating = 0
+
+        sum_comment_rating = self.user.comment_set.aggregate(comment_rating=Sum('comment_rating'))
+        result_sum_comment_rating = 0
+        result_sum_comment_rating += sum_comment_rating.get('comment_rating')
+
+        # суммарный рейтинг каждой статьи автора умноженный на 3
+        self.user_rating = result_sum_rating * 3 + result_sum_comment_rating
+        # сохраняем результаты в базу данных
         self.save()
 
 
@@ -70,3 +80,4 @@ class Comment(models.Model):
     def dislike(self):
         self.comment_rating -= 1
         self.save()
+
