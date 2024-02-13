@@ -60,6 +60,9 @@ class Post(models.Model):
     def preview(self):
         return (self.text[:124] + '...') if self.text else 'Текст не найден'
 
+    def __str__(self):
+        return f'{self.title}: {self.text}'
+
 
 class PostCategory(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
