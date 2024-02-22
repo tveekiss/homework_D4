@@ -1,10 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'flatpages/default.html' %}
+
+{% load custom_filters %}
+
+
+{% block title %}
+{{ news.title|censor }}
+{% endblock title %}
+
+
+{% block content %}
+    <h1>{{ news.title|censor }}</h1>
+    <p>{{ news.date|date:"d.m.Y" }}</p>
+    <hr>
+    <p>{{ news.text|censor }}</p>
+{% endblock content %}

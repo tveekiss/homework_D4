@@ -4,20 +4,20 @@
 {% load custom_tags %}
 
 {% block title %}
-Новости
+Статьи
 {% endblock title %}
 
 {% block content %}
-    <h1>Новости</h1>
+    <h1>Статьи</h1>
     <hr>
-    {% if news %}
+    {% if articles %}
         <table>
             <tr>
                 <td> Заголовок </td>
                 <td> Дата публикации </td>
-                <td> текст статьи </td>
+                <td> Tекст статьи </td>
             </tr>
-            {% for post in news %}
+            {% for post in articles %}
                 <tr>
                     <td>{{ post.title|censor }}</td>
                     <td>{{ post.date|date:'M d Y' }}</td>
@@ -26,7 +26,7 @@
             {% endfor %}
         </table>
     {% else %}
-        <h2>Новостей нету!</h2>
+        <h2>статей нету!</h2>
     {% endif %}
 
        {% if page_obj.has_previous %}

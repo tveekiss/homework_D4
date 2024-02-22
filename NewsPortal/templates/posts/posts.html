@@ -4,11 +4,11 @@
 {% load custom_tags %}
 
 {% block title %}
-Posts
+Главная
 {% endblock title %}
 
 {% block content %}
-    <h1>Новости</h1>
+    <h1>Главная</h1>
     <hr>
     {% if posts %}
         <table>
@@ -26,7 +26,7 @@ Posts
             {% endfor %}
         </table>
     {% else %}
-        <h2>Новостей нету!</h2>
+        <h2>Ничего нету!</h2>
     {% endif %}
 
        {% if page_obj.has_previous %}

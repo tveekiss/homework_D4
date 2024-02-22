@@ -2,9 +2,15 @@
 
 {% load custom_filters %}
 
+
+{% block title %}
+{{ article.title|censor }}
+{% endblock title %}
+
+
 {% block content %}
-    <h1>{{ new.title|censor }}</h1>
-    <p>{{ new.date|date:"d.m.Y" }}</p>
+    <h1>{{ article.title|censor }}</h1>
+    <p>{{ article.date|date:"d.m.Y" }}</p>
     <hr>
-    <p>{{ new.text|censor }}</p>
+    <p>{{ article.text|censor }}</p>
 {% endblock content %}

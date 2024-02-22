@@ -38,9 +38,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
     'news',
     'django.contrib.flatpages',
-    'django.contrib.sites'
+    'django.contrib.sites',
+    'django_filters',
+    'fpages',
 ]
 
 MIDDLEWARE = [
@@ -129,3 +132,5 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+SITE_ID = 1
