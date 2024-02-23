@@ -10,18 +10,26 @@
 {% block content %}
     <h1>Статьи</h1>
     <hr>
+
+        <a href="{% url 'article_create' %}">Добавить статью</a>
+
     {% if articles %}
         <table>
             <tr>
                 <td> Заголовок </td>
                 <td> Дата публикации </td>
-                <td> Tекст статьи </td>
+                <td> Текст статьи </td>
+                <td> Действия </td>
             </tr>
             {% for post in articles %}
                 <tr>
                     <td>{{ post.title|censor }}</td>
                     <td>{{ post.date|date:'M d Y' }}</td>
                     <td>{{ post.text|truncatechars:20|censor }}</td>
+                    <td>
+                        <a href="{% url 'article_edit' pk=product.id %}">Изменить</a>
+                        <a href="{% url 'article_delete' product.id %}">Удалить</a>
+                    </td>
                 </tr>
             {% endfor %}
         </table>
