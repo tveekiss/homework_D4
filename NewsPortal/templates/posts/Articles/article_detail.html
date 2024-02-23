@@ -13,4 +13,6 @@
     <p>{{ article.date|date:"d.m.Y" }}</p>
     <hr>
     <p>{{ article.text|censor }}</p>
+    <a href="{% url 'article_edit' post.id %}">Изменить</a>
+    <a href="{% url 'article_delete' post.id %}">Удалить</a>
 {% endblock content %}
