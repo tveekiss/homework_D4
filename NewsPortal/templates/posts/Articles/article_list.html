@@ -27,8 +27,8 @@
                     <td>{{ post.date|date:'M d Y' }}</td>
                     <td>{{ post.text|truncatechars:20|censor }}</td>
                     <td>
-                        <a href="{% url 'article_edit' pk=product.id %}">Изменить</a>
-                        <a href="{% url 'article_delete' product.id %}">Удалить</a>
+                        <a href="{% url 'article_edit' post.id %}">Изменить</a>
+                        <a href="{% url 'article_delete' post.id %}">Удалить</a>
                     </td>
                 </tr>
             {% endfor %}
